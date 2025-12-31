@@ -111,7 +111,7 @@
                     </p>
 
                     <p class="mb-6">
-                        I've been asking myself: what would it take to build something better? Not incrementally better—fundamentally different. This post is my attempt to work through that question from first principles.
+                        I've been asking myself: what would it take to build something better? Not incrementally better, but fundamentally different. This post is my attempt to work through that question from first principles.
                     </p>
 
                     <figure class="my-8">
@@ -122,16 +122,16 @@
                     <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">The Problem We're Solving</h2>
 
                     <p class="mb-6">
-                        Text prediction seems simple. Given a sequence of tokens, predict the next one. But the computational requirements are extreme. Language has structure at multiple scales—characters, words, phrases, sentences, paragraphs, documents. Dependencies can span thousands of tokens. The vocabulary is large. The distribution is heavy-tailed.
+                        Text prediction seems simple. Given a sequence of tokens, predict the next one. But the computational requirements are extreme. Language has structure at multiple scales: characters, words, phrases, sentences, paragraphs, documents. Dependencies can span thousands of tokens. The vocabulary is large. The distribution is heavy-tailed.
                     </p>
 
                     <p class="mb-6">
-                        The core challenge is this: how do you efficiently model relationships between all positions in a sequence? RNNs process sequentially, compressing everything into a fixed-size hidden state. That creates a bottleneck—long-range dependencies get lost. Transformers solve this with attention: every position can directly access every other position. But that costs O(n²) computation.
+                        The core challenge is this: how do you efficiently model relationships between all positions in a sequence? RNNs process sequentially, compressing everything into a fixed-size hidden state. That creates a bottleneck, and long-range dependencies get lost. Transformers solve this with attention: every position can directly access every other position. But that costs O(n²) computation.
                     </p>
 
                     <figure class="my-8">
                         <img src="../images/blog/8_research_problem.png" alt="The research problem" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
-                        <figcaption>Figure 2: The fundamental tradeoff in sequence modeling—expressiveness versus efficiency.</figcaption>
+                        <figcaption>Figure 2: The fundamental tradeoff in sequence modeling: expressiveness versus efficiency.</figcaption>
                     </figure>
 
                     <p class="mb-6">
@@ -145,7 +145,7 @@
                     </p>
 
                     <p class="mb-6">
-                        First, attention is content-based routing. Each token decides what to attend to based on its content, not its position. This lets the model learn flexible patterns—the same word can attend differently depending on context.
+                        First, attention is content-based routing. Each token decides what to attend to based on its content, not its position. This lets the model learn flexible patterns. The same word can attend differently depending on context.
                     </p>
 
                     <p class="mb-6">
@@ -157,18 +157,18 @@
                     </p>
 
                     <p class="mb-6">
-                        Fourth, the inductive biases are minimal. Transformers don't assume much about the structure of language. They learn it from data. This generality is both a strength and a weakness—they need massive amounts of data to learn what could be built in.
+                        Fourth, the inductive biases are minimal. Transformers don't assume much about the structure of language. They learn it from data. This generality is both a strength and a weakness. They need massive amounts of data to learn what could be built in.
                     </p>
 
                     <figure class="my-8">
                         <img src="../images/blog/2_memory_comparison.png" alt="Memory access patterns comparison" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
-                        <figcaption>Figure 3: How different architectures access context—from fixed windows to full attention.</figcaption>
+                        <figcaption>Figure 3: How different architectures access context, from fixed windows to full attention.</figcaption>
                     </figure>
 
                     <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">Transformer Limitations</h2>
 
                     <p class="mb-6">
-                        The O(n²) complexity is the obvious problem. Long contexts are expensive. There are workarounds—sparse attention, sliding windows, memory compression—but they're patches, not solutions.
+                        The O(n²) complexity is the obvious problem. Long contexts are expensive. There are workarounds like sparse attention, sliding windows, and memory compression, but they're patches, not solutions.
                     </p>
 
                     <p class="mb-6">
@@ -194,7 +194,7 @@
                     </p>
 
                     <p class="mb-6">
-                        <strong>Linear Attention</strong> variants try to get attention-like behavior without the quadratic cost. The trick is to avoid materializing the full n×n attention matrix. Various approximations exist—random features, low-rank factorization, sparse patterns. None have matched full attention quality, but the gap is narrowing.
+                        <strong>Linear Attention</strong> variants try to get attention-like behavior without the quadratic cost. The trick is to avoid materializing the full n×n attention matrix. Various approximations exist: random features, low-rank factorization, sparse patterns. None have matched full attention quality, but the gap is narrowing.
                     </p>
 
                     <figure class="my-8">
@@ -271,7 +271,7 @@
                     </p>
 
                     <p class="mb-6">
-                        I've implemented a prototype of this idea. The results are instructive—it doesn't work in pure form. The information bottleneck is too severe. But with augmentations (local attention, skip connections), performance improves substantially. The direction seems worth pursuing.
+                        I've implemented a prototype of this idea. The results are instructive. It doesn't work in pure form. The information bottleneck is too severe. But with augmentations (local attention, skip connections), performance improves substantially. The direction seems worth pursuing.
                     </p>
 
                     <figure class="my-8">
@@ -282,7 +282,7 @@
                     <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">The Honest Conclusion</h2>
 
                     <p class="mb-6">
-                        Can we do better than transformers? Almost certainly yes—eventually. The question is when, and whether "better" means "fundamentally different" or "cleverly augmented."
+                        Can we do better than transformers? Almost certainly yes, eventually. The question is when, and whether "better" means "fundamentally different" or "cleverly augmented."
                     </p>
 
                     <p class="mb-6">
@@ -294,7 +294,7 @@
                     </p>
 
                     <p class="mb-6">
-                        My own view: the answer is probably somewhere in between. Pure alternatives haven't matched transformers, but hybrid approaches are promising. The next breakthrough might not be a single architecture but a combination of mechanisms—hierarchical structure, sparse computation, predictive coding, retrieval augmentation—assembled in a way we haven't figured out yet.
+                        My own view: the answer is probably somewhere in between. Pure alternatives haven't matched transformers, but hybrid approaches are promising. The next breakthrough might not be a single architecture but a combination of mechanisms: hierarchical structure, sparse computation, predictive coding, and retrieval augmentation, assembled in a way we haven't figured out yet.
                     </p>
 
                     <p class="mb-6">
