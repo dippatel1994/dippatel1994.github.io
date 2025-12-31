@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Blogs - Dipkumar Patel</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "2xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        .theme-transition {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        .blog-card:hover h3 {
+            color: #1152d4;
+        }
+        .dark .blog-card:hover h3 {
+            color: #60a5fa;
+        }
+        .nav-link {
+            position: relative;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #1152d4;
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Apple-inspired glassmorphism utilities */
+        .glass {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+        .glass-interactive {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-interactive:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+        }
+        .dark .glass-interactive:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        .hover-lift {
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .hover-lift:hover {
+            transform: translateY(-4px);
+        }
+    </style>
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display theme-transition min-h-screen flex flex-col">
+    <!-- Background gradient for glass effect -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-400/20 via-purple-300/15 to-pink-300/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-gradient-to-tr from-cyan-400/15 via-blue-300/10 to-indigo-300/10 rounded-full blur-3xl"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-primary/5 via-transparent to-primary/5 rounded-full blur-3xl"></div>
+    </div>
+    <!-- Header -->
+    <header class="relative z-50 flex items-center justify-between px-6 py-6 md:px-12 lg:px-20">
+        <a class="group flex items-center gap-2" href="index.html">
+            <div class="flex items-center justify-center w-10 h-10 rounded-lg bg-white/70 dark:bg-slate-800/70 backdrop-blur-lg shadow-sm border border-white/40 dark:border-slate-700/50 group-hover:border-primary/50 transition-all">
+                <span class="text-xl font-bold text-primary tracking-tighter">DP</span>
+            </div>
+        </a>
+        <nav class="hidden lg:flex items-center gap-2 px-3 py-2 rounded-full shadow-lg" style="background: rgba(255,255,255,0.4); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border: 1px solid rgba(255,255,255,0.5); box-shadow: 0 8px 32px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.6);">
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary px-4 py-2 rounded-full hover:bg-white/40 transition-all" href="index.html">Home</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary px-4 py-2 rounded-full hover:bg-white/40 transition-all" href="publications.html">Publications</a>
+            <a class="nav-link text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary px-4 py-2 rounded-full hover:bg-white/40 transition-all" href="professional-journey.html">Professional Journey</a>
+            <a class="nav-link text-sm font-semibold text-primary px-4 py-2 rounded-full" style="background: rgba(255,255,255,0.5);" href="blogs.html">Blogs</a>
+        </nav>
+        <button onclick="toggleDarkMode()" aria-label="Toggle Dark Mode" class="flex items-center justify-center w-10 h-10 rounded-full bg-white/60 dark:bg-slate-800/60 backdrop-blur-lg text-slate-600 dark:text-slate-300 shadow-sm border border-white/40 dark:border-slate-700/50 hover:bg-white/80 dark:hover:bg-slate-700/80 transition-all">
+            <span class="material-symbols-outlined text-[20px]">light_mode</span>
+        </button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col items-center w-full px-4 sm:px-10 py-6">
+        <div class="max-w-[960px] w-full flex flex-col gap-5">
+            <!-- Hero Section -->
+            <section class="flex flex-col gap-2 animate-fade-in-up">
+                <h1 class="text-3xl md:text-4xl font-black leading-tight tracking-tight text-slate-900 dark:text-white">
+                    Thoughts &amp; Writings
+                </h1>
+                <p class="text-base text-slate-600 dark:text-slate-400 font-normal leading-relaxed max-w-2xl">
+                    Exploring the intersection of AI, Ethics, and Systems through in-depth articles, tutorials, and research notes.
+                </p>
+            </section>
+
+            <!-- Blog Cards -->
+            <div class="flex flex-col gap-3 animate-fade-in-up" style="animation-delay: 0.1s; opacity: 0; animation-fill-mode: forwards;">
+                <!-- Article 1 -->
+                <a href="blog/quest-for-next-transformer.html" class="group blog-card glass-card glass-interactive flex gap-3 p-3 rounded-xl">
+                    <div class="flex-1 flex flex-col gap-1">
+                        <span class="text-xs text-slate-500 dark:text-slate-400">December 2025</span>
+                        <h3 class="text-base font-semibold leading-snug text-slate-900 dark:text-white transition-colors">
+                            The Quest for the Next Transformer: A First-Principles Exploration of Sequence Modeling
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                            An honest examination of whether we can surpass the transformer architecture for text prediction.
+                        </p>
+                    </div>
+                    <div class="w-16 h-16 shrink-0 rounded-md bg-slate-100 dark:bg-slate-800 overflow-hidden">
+                        <img src="images/blog/1_timeline.png" alt="" class="w-full h-full object-cover"/>
+                    </div>
+                </a>
+
+                <!-- Article 2 -->
+                <a href="blog/brain-inspired-mechanisms.html" class="group blog-card glass-card glass-interactive flex gap-3 p-3 rounded-xl">
+                    <div class="flex-1 flex flex-col gap-1">
+                        <span class="text-xs text-slate-500 dark:text-slate-400">December 2025</span>
+                        <h3 class="text-base font-semibold leading-snug text-slate-900 dark:text-white transition-colors">
+                            Brain-Inspired Mechanisms for Sequence Modeling: A Deep Dive Into Biological Computation
+                        </h3>
+                        <p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed line-clamp-2">
+                            The human brain processes language on 20 watts. GPT-4 training consumed ~50 million watts.
+                        </p>
+                    </div>
+                    <div class="w-16 h-16 shrink-0 rounded-md bg-slate-100 dark:bg-slate-800 overflow-hidden flex items-center justify-center">
+                        <span class="material-symbols-outlined text-slate-300 dark:text-slate-600" style="font-size: 28px;">psychology</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-slate-200/50 dark:border-slate-800/50 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm py-8 px-4 sm:px-10">
+        <div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-sm text-slate-500 dark:text-slate-400">
+                &copy; 2024 Dipkumar Patel. All rights reserved.
+            </div>
+            <div class="flex items-center gap-6">
+                <a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="https://www.linkedin.com/in/dippatel1994/" target="_blank">
+                    <span class="text-sm font-medium">LinkedIn</span>
+                </a>
+                <a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="https://scholar.google.com/citations?user=riJPyEQAAAAJ&hl=en" target="_blank">
+                    <span class="text-sm font-medium">Google Scholar</span>
+                </a>
+                <a class="text-slate-500 hover:text-primary dark:text-slate-400 dark:hover:text-primary transition-colors" href="https://github.com/dippatel1994" target="_blank">
+                    <span class="text-sm font-medium">GitHub</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>The Quest for the Next Transformer - Dipkumar Patel</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1152d4",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+        html { scroll-behavior: smooth; }
+        figure { margin: 2em 0; }
+        figcaption { font-size: 0.9em; color: #64748b; margin-top: 0.5em; text-align: center; }
+        .dark figcaption { color: #94a3b8; }
+    </style>
+    <script>
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                html.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        }
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-[#0d121b] dark:text-[#e7ebf3] transition-colors duration-300">
+    <div class="fixed top-0 left-0 w-full z-50 h-1 bg-gray-200 dark:bg-gray-800">
+        <div id="progress-bar" class="h-full bg-primary transition-all duration-300 ease-out" style="width: 0%;"></div>
+    </div>
+
+    <header class="sticky top-0 z-40 w-full border-b border-[#e7ebf3] dark:border-gray-800 bg-[#f8f9fc]/90 dark:bg-[#101622]/90 backdrop-blur-md">
+        <div class="px-6 lg:px-40 py-3">
+            <div class="flex items-center justify-between mx-auto max-w-7xl">
+                <a class="flex items-center gap-4 text-[#0d121b] dark:text-white group" href="../index.html">
+                    <div class="size-8 text-primary transition-transform group-hover:scale-110">
+                        <svg class="w-full h-full" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                            <g clip-path="url(#clip0_6_535)">
+                                <path clip-rule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fill-rule="evenodd"></path>
+                            </g>
+                            <defs>
+                                <clipPath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clipPath>
+                            </defs>
+                        </svg>
+                    </div>
+                    <h2 class="text-lg font-bold leading-tight tracking-[-0.015em]">Dipkumar Patel</h2>
+                </a>
+                <div class="hidden md:flex flex-1 justify-end gap-8 items-center">
+                    <nav class="flex items-center gap-9">
+                        <a class="text-[#0d121b] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="../index.html">Home</a>
+                        <a class="text-[#0d121b] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="../publications.html">Publications</a>
+                        <a class="text-[#0d121b] dark:text-gray-300 text-sm font-medium hover:text-primary transition-colors" href="../professional-journey.html">Professional Journey</a>
+                        <a class="text-primary text-sm font-bold border-b-2 border-primary" href="../blogs.html">Blogs</a>
+                    </nav>
+                    <button onclick="toggleDarkMode()" class="flex items-center justify-center rounded-lg h-10 w-10 bg-[#e7ebf3] dark:bg-gray-800 text-[#0d121b] dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">light_mode</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="layout-container flex flex-col min-h-screen">
+        <main class="flex-1 w-full max-w-3xl mx-auto px-6 py-12">
+            <article class="prose dark:prose-invert max-w-none">
+                <header class="mb-12">
+                    <div class="flex items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                        <span>December 2025</span>
+                        <span>&bull;</span>
+                        <span>25 min read</span>
+                    </div>
+                    <h1 class="text-3xl md:text-4xl font-bold leading-tight text-[#0d121b] dark:text-white mb-6">
+                        The Quest for the Next Transformer
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                        A first-principles exploration of sequence modeling and what might come next.
+                    </p>
+                </header>
+
+                <section class="text-lg leading-8 text-gray-700 dark:text-gray-300">
+                    <p class="mb-6">
+                        The transformer architecture has dominated NLP for seven years now. That's a long time in deep learning. CNNs had their run in vision. RNNs had theirs in sequences. Transformers seem to be having a longer one, but nothing lasts forever.
+                    </p>
+
+                    <p class="mb-6">
+                        I've been asking myself: what would it take to build something better? Not incrementally better—fundamentally different. This post is my attempt to work through that question from first principles.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/1_timeline.png" alt="Architecture evolution timeline" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 1: The evolution of sequence modeling architectures. Each transition brought fundamental changes to how we process sequential data.</figcaption>
+                    </figure>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">The Problem We're Solving</h2>
+
+                    <p class="mb-6">
+                        Text prediction seems simple. Given a sequence of tokens, predict the next one. But the computational requirements are extreme. Language has structure at multiple scales—characters, words, phrases, sentences, paragraphs, documents. Dependencies can span thousands of tokens. The vocabulary is large. The distribution is heavy-tailed.
+                    </p>
+
+                    <p class="mb-6">
+                        The core challenge is this: how do you efficiently model relationships between all positions in a sequence? RNNs process sequentially, compressing everything into a fixed-size hidden state. That creates a bottleneck—long-range dependencies get lost. Transformers solve this with attention: every position can directly access every other position. But that costs O(n²) computation.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/8_research_problem.png" alt="The research problem" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 2: The fundamental tradeoff in sequence modeling—expressiveness versus efficiency.</figcaption>
+                    </figure>
+
+                    <p class="mb-6">
+                        O(n²) is expensive. For a 100K token context, that's 10 billion attention computations per layer. And modern models have dozens of layers. The compute bill adds up fast.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">What Makes Transformers Work</h2>
+
+                    <p class="mb-6">
+                        Before trying to replace transformers, it's worth understanding why they work so well. Several things stand out.
+                    </p>
+
+                    <p class="mb-6">
+                        First, attention is content-based routing. Each token decides what to attend to based on its content, not its position. This lets the model learn flexible patterns—the same word can attend differently depending on context.
+                    </p>
+
+                    <p class="mb-6">
+                        Second, the architecture parallelizes beautifully. Unlike RNNs, every position can be processed simultaneously. This maps perfectly to GPU hardware. Training speed is a huge practical advantage.
+                    </p>
+
+                    <p class="mb-6">
+                        Third, residual connections and layer normalization make deep networks trainable. You can stack 100+ layers without gradient problems. Depth seems to matter for language understanding.
+                    </p>
+
+                    <p class="mb-6">
+                        Fourth, the inductive biases are minimal. Transformers don't assume much about the structure of language. They learn it from data. This generality is both a strength and a weakness—they need massive amounts of data to learn what could be built in.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/2_memory_comparison.png" alt="Memory access patterns comparison" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 3: How different architectures access context—from fixed windows to full attention.</figcaption>
+                    </figure>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">Transformer Limitations</h2>
+
+                    <p class="mb-6">
+                        The O(n²) complexity is the obvious problem. Long contexts are expensive. There are workarounds—sparse attention, sliding windows, memory compression—but they're patches, not solutions.
+                    </p>
+
+                    <p class="mb-6">
+                        Less obvious is the efficiency problem. Transformers use the same computation for every token. Easy tokens get as much compute as hard ones. The word "the" gets as much attention as a technical term that requires reasoning. This is wasteful.
+                    </p>
+
+                    <p class="mb-6">
+                        The inductive bias problem cuts both ways. Transformers don't build in the hierarchical structure of language. They have to learn that sentences contain phrases contain words. With enough data this works, but it's inefficient. A child learns language with orders of magnitude less data.
+                    </p>
+
+                    <p class="mb-6">
+                        There's also the memory problem. Transformers have no persistent state across sequences. Every context window starts fresh. There's no way to accumulate knowledge over a conversation without re-reading everything.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">The State of Alternatives</h2>
+
+                    <p class="mb-6">
+                        Several research directions are trying to address these limitations.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>State Space Models</strong> (Mamba, S4, etc.) replace attention with learned linear recurrences. Complexity is O(n) instead of O(n²). They're competitive with transformers on some benchmarks, especially for long sequences. The main question is whether linear dynamics can capture the same patterns as attention. Early results are promising but not conclusive.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>Linear Attention</strong> variants try to get attention-like behavior without the quadratic cost. The trick is to avoid materializing the full n×n attention matrix. Various approximations exist—random features, low-rank factorization, sparse patterns. None have matched full attention quality, but the gap is narrowing.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/3_complexity.png" alt="Computational complexity scaling" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 4: How computation scales with sequence length across different architectures.</figcaption>
+                    </figure>
+
+                    <p class="mb-6">
+                        <strong>Retrieval-Augmented Models</strong> separate memory from computation. Instead of attending to everything in context, retrieve relevant chunks from an external store. This decouples context length from compute cost. The challenge is making retrieval differentiable and accurate.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>Mixture of Experts</strong> reduces computation by routing tokens to specialized sub-networks. Not every parameter activates for every token. This addresses the uniform compute problem but doesn't fundamentally change the attention mechanism.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">Looking to Biology</h2>
+
+                    <p class="mb-6">
+                        The brain processes language on about 20 watts. Modern LLMs require megawatts. That's a gap worth understanding.
+                    </p>
+
+                    <p class="mb-6">
+                        Several brain mechanisms seem relevant. Sparse coding: only 1% of neurons are active at any time. Predictive coding: higher areas predict lower areas, and only prediction errors propagate. Hierarchical processing: different regions operate at different timescales, matching the hierarchical structure of language.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/4_brain_vs_transformer.png" alt="Brain vs Transformer comparison" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 5: The brain is sparse, hierarchical, and selective. Transformers are dense, flat, and all-to-all.</figcaption>
+                    </figure>
+
+                    <p class="mb-6">
+                        The question is whether these mechanisms can be translated into practical algorithms. "Biologically plausible" doesn't mean "computationally useful." The brain evolved for survival, not for next-token prediction. But the efficiency gap suggests we might be missing something fundamental.
+                    </p>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">What Would a Successor Need?</h2>
+
+                    <p class="mb-6">
+                        Based on this analysis, I think a transformer successor would need several properties.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>Sub-quadratic complexity.</strong> O(n²) doesn't scale. Any successor needs to be O(n log n) or better while maintaining expressiveness.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>Adaptive computation.</strong> Not all tokens need equal compute. Easy predictions should be cheap. Hard ones should be able to recruit more resources.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>Hierarchical structure.</strong> Language is hierarchical. The architecture should reflect this, with different components operating at different timescales and levels of abstraction.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>Persistent memory.</strong> The ability to accumulate knowledge across contexts without re-reading everything. Some form of external or compressed memory.
+                    </p>
+
+                    <p class="mb-6">
+                        <strong>GPU-friendly computation.</strong> This is pragmatic but essential. Any architecture that doesn't parallelize well won't get the engineering investment needed to scale.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/5_paradigm_pattern.png" alt="Paradigm shifts in sequence modeling" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 6: Every architectural shift challenged a "fundamental" constraint. What constraint do we accept today that isn't actually fundamental?</figcaption>
+                    </figure>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">A Possible Direction</h2>
+
+                    <p class="mb-6">
+                        One direction I find promising combines several ideas: hierarchical structure with different timescales, predictive coding where only errors propagate, sparse attention for fine-grained modeling, and skip connections to preserve information across the hierarchy.
+                    </p>
+
+                    <p class="mb-6">
+                        The intuition is this: lower levels of the hierarchy process fast, capturing local patterns. Higher levels process slowly, capturing document-level context. Each level predicts the level below. When predictions are correct, computation is minimal. When predictions fail, errors propagate and trigger updates.
+                    </p>
+
+                    <p class="mb-6">
+                        I've implemented a prototype of this idea. The results are instructive—it doesn't work in pure form. The information bottleneck is too severe. But with augmentations (local attention, skip connections), performance improves substantially. The direction seems worth pursuing.
+                    </p>
+
+                    <figure class="my-8">
+                        <img src="../images/blog/7_probability.png" alt="Future predictions" class="w-full rounded-lg border border-gray-200 dark:border-gray-700"/>
+                        <figcaption>Figure 7: My subjective estimates for where we might be in 5 years.</figcaption>
+                    </figure>
+
+                    <h2 class="text-2xl font-bold text-[#0d121b] dark:text-white mt-12 mb-6">The Honest Conclusion</h2>
+
+                    <p class="mb-6">
+                        Can we do better than transformers? Almost certainly yes—eventually. The question is when, and whether "better" means "fundamentally different" or "cleverly augmented."
+                    </p>
+
+                    <p class="mb-6">
+                        The pessimistic view: transformers are like convolutions for vision. Not optimal, but good enough that improvements are incremental. The architecture will evolve (sparse attention, mixture of experts, etc.) but the core ideas persist.
+                    </p>
+
+                    <p class="mb-6">
+                        The optimistic view: we're at the beginning of understanding sequence modeling. The brain proves that much more efficient solutions exist. Someone will find the right combination of ideas, and it will be as discontinuous as the transition from RNNs to transformers.
+                    </p>
+
+                    <p class="mb-6">
+                        My own view: the answer is probably somewhere in between. Pure alternatives haven't matched transformers, but hybrid approaches are promising. The next breakthrough might not be a single architecture but a combination of mechanisms—hierarchical structure, sparse computation, predictive coding, retrieval augmentation—assembled in a way we haven't figured out yet.
+                    </p>
+
+                    <p class="mb-6">
+                        The search continues. And that's what makes this field exciting.
+                    </p>
+                </section>
+            </article>
+        </main>
+
+        <footer class="w-full border-t border-[#e7ebf3] dark:border-gray-800 bg-white dark:bg-[#0d121b] py-8">
+            <div class="max-w-3xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-sm text-gray-500 dark:text-gray-400">&copy; 2025 Dipkumar Patel</p>
+                <div class="flex items-center gap-6">
+                    <a class="text-gray-500 hover:text-primary transition-colors text-sm" href="https://github.com/dippatel1994" target="_blank">GitHub</a>
+                    <a class="text-gray-500 hover:text-primary transition-colors text-sm" href="https://www.linkedin.com/in/dippatel1994/" target="_blank">LinkedIn</a>
+                    <a class="text-gray-500 hover:text-primary transition-colors text-sm" href="https://scholar.google.com/citations?user=riJPyEQAAAAJ&hl=en" target="_blank">Scholar</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPos = window.scrollY;
+            const progress = (scrollPos / docHeight) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        });
+    </script>
+</body>
+</html>
